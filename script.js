@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const signOutButton = document.getElementById('sign-out-btn');
     const authMessage = document.getElementById('auth-message');
     let supabaseClient = null;
+    let authConfig = null;
 
     function setAuthMessage(message) {
         if (authMessage) authMessage.textContent = message || '';
@@ -22,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const configResponse = await fetch('/config');
             const config = await configResponse.json();
             if (!config.url || !config.key) return;
+            authConfig = config;
             supabaseClient = window.supabase.createClient(config.url, config.key);
             const { data: { session } } = await supabaseClient.auth.getSession();
             updateAuthUI(session);
@@ -42,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!supabaseClient) { setAuthMessage('Sign-in is not configured yet.'); return; }
         googleButton.disabled = true;
         setAuthMessage('Connecting to Google…');
-        const redirectTo = config?.redirectUrl || window.location.origin + '/auth/callback';
+        const redirectTo = authConfig?.redirectUrl || window.location.origin + '/auth/callback';
         const { error } = await supabaseClient.auth.signInWithOAuth({ provider: 'google', options: { redirectTo } });
         if (error) { googleButton.disabled = false; setAuthMessage('Google sign-in could not be started.'); }
     });
