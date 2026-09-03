@@ -414,7 +414,7 @@ document.addEventListener('DOMContentLoaded', () => {
         neurchat: {
             title: "NeurChat — AI Conversation Platform",
             subtitle: "Enterprise Conversational AI System",
-            img: "images/project-ai-chatbot.jpg",
+            img: "project-ai-chatbot.jpg",
             desc: "NeurChat is a next-generation conversational AI platform built with PyTorch, React, and FastAPI. It supports multi-modal input processing, custom prompt orchestration, real-time token streaming, and enterprise memory vector databases.",
             tech: ["PyTorch", "React.js", "FastAPI", "Pinecone Vector DB", "Docker", "TailwindCSS"],
             metrics: ["10M+ Daily API Queries", "99.9% Uptime", "45ms Avg Latency"]
@@ -422,7 +422,7 @@ document.addEventListener('DOMContentLoaded', () => {
         shopverse: {
             title: "ShopVerse — Smart E-Commerce Platform",
             subtitle: "AI-Driven Predictive Commerce",
-            img: "images/project-ecommerce.jpg",
+            img: "project-ecommerce.jpg",
             desc: "ShopVerse leverages machine learning recommendation engines to deliver real-time personalized product feeds, dynamic pricing algorithms, and an intuitive modern dark-mode administrative dashboard.",
             tech: ["Next.js 14", "TypeScript", "Node.js", "MongoDB", "Stripe API", "TensorFlow.js"],
             metrics: ["+42% Conversion Rate", "3.2x User Engagement", "Sub-100ms Page Loads"]
@@ -430,7 +430,7 @@ document.addEventListener('DOMContentLoaded', () => {
         vitalpulse: {
             title: "VitalPulse — Health & Fitness Tracker",
             subtitle: "Cross-Platform Mobile AI Health App",
-            img: "images/project-mobile.jpg",
+            img: "project-mobile.jpg",
             desc: "A sleek cross-platform iOS & Android mobile application that uses camera computer vision to analyze heart rate, track workouts, and generate personalized nutrition plans.",
             tech: ["Flutter", "Dart", "Firebase", "Python OpenCV", "Apple HealthKit"],
             metrics: ["50K+ Active Downloads", "4.9 ★ App Store Rating", "100K+ Workouts Tracked"]
@@ -438,7 +438,7 @@ document.addEventListener('DOMContentLoaded', () => {
         deepsight: {
             title: "DeepSight — Computer Vision Engine",
             subtitle: "Autonomous Retail Checkout & Security",
-            img: "images/hero-bg.jpg",
+            img: "hero-bg.jpg",
             desc: "Real-time edge object detection system that identifies up to 100 items per second with 99.4% accuracy for automated checkout counters.",
             tech: ["YOLOv8", "OpenCV", "C++", "CUDA", "TensorRT"],
             metrics: ["99.4% Accuracy Rate", "60 FPS Video Stream", "Zero Checkout Queues"]
@@ -446,7 +446,7 @@ document.addEventListener('DOMContentLoaded', () => {
         luxebank: {
             title: "Luxe Bank — Fintech Design System",
             subtitle: "Unified Design System & UI Kit",
-            img: "images/about-portrait.jpg",
+            img: "about-portrait.jpg",
             desc: "A comprehensive design system comprising 200+ Figma components, WCAG AAA accessibility compliance, micro-animations, and dual theme tokens.",
             tech: ["Figma", "Design Tokens", "Storybook", "React Components"],
             metrics: ["200+ Components", "100% WCAG AAA", "2x Faster Dev Sprints"]
@@ -454,7 +454,7 @@ document.addEventListener('DOMContentLoaded', () => {
         soundwave: {
             title: "SoundWave — AI Music Streaming",
             subtitle: "Collaborative Music Platform",
-            img: "images/project-ecommerce.jpg",
+            img: "project-ecommerce.jpg",
             desc: "Real-time audio streaming platform featuring AI sentiment-based playlist generation and low-latency WebRTC group audio sessions.",
             tech: ["React", "WebAudio API", "Node.js", "Socket.io", "AWS S3"],
             metrics: ["1M+ Streams", "Real-time Sync", "Zero Buffer Lag"]
