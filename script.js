@@ -741,16 +741,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const q = query.toLowerCase();
 
         const modelNames = {
-            claude37: 'Anthropic Claude 3.7 Sonnet (Hybrid Thinking & Coding)',
-            claude35opus: 'Anthropic Claude 3.5 Opus (Ultimate Reasoning)',
-            gpt45: 'OpenAI ChatGPT GPT-4.5 Orion (Next-Gen Multimodal)',
-            gpt4o: 'OpenAI ChatGPT GPT-4o Realtime (Voice & Vision)',
-            o3mini: 'OpenAI o3-mini (High-Speed STEM Reasoning)',
-            gemini25: 'Google Gemini 2.5 Pro (10M Context & Deep Reasoning)',
-            gemini25flash: 'Google Gemini 2.5 Flash (Ultra-Low Latency)',
-            grok3: 'xAI Grok 3 Ultra (Real-time Web Search & Reasoning)',
-            deepseekr1: 'DeepSeek-R1 (Open-Weights Reasoning Engine)',
-            llama33: 'Meta Llama 3.3 70B (Open-Source Frontier)',
+            claudeopus45: 'Anthropic Claude Opus 4.5 (Frontier Reasoning)',
+            claudesonnet45: 'Anthropic Claude Sonnet 4.5 (Coding & Agents)',
+            gpt5: 'OpenAI GPT-5 (Frontier General Intelligence)',
+            gpt5mini: 'OpenAI GPT-5 Mini (Fast Agent Workflows)',
+            o3: 'OpenAI o3 (Deep Reasoning & Tool Use)',
+            gemini3pro: 'Google Gemini 3 Pro (Multimodal Reasoning)',
+            gemini3flash: 'Google Gemini 3 Flash (High-Speed Agents)',
+            grok4: 'xAI Grok 4 (Live Knowledge & Reasoning)',
+            deepseekv32: 'DeepSeek V3.2 (Open Reasoning)',
+            llama4: 'Meta Llama 4 Maverick (Open Multimodal)',
             legendzx: 'Legendzx Neural Core v4.5 (Edge Hardware Accelerated)'
         };
 
