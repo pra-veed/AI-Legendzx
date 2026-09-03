@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const googleButton = document.getElementById('google-sign-in');
     const signedInState = document.getElementById('signed-in-state');
     const signedInLabel = document.getElementById('signed-in-label');
-    const signOutButton = document.getElementById('sign-out-btn');
     const authMessage = document.getElementById('auth-message');
     let supabaseClient = null;
     let authConfig = null;
@@ -49,10 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (error) { googleButton.disabled = false; setAuthMessage('Google sign-in could not be started.'); }
     });
 
-    signOutButton?.addEventListener('click', async () => {
-        if (supabaseClient) await supabaseClient.auth.signOut();
-        setAuthMessage('');
-    });
     setupAuth();
 
     // ═══════════════ PRELOADER ═══════════════
@@ -551,7 +546,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ═══════════════════════════════════════════════════
     // 🎨 THREE.JS 3D HOLOGRAPHIC AI AVATAR ENGINE
-    // ═══════════════════════════════════════════════════
+    // ═════════════���═════════════════════════════════════
     let scene, camera, renderer, sphere, innerMesh, particleSystem, rings = [];
     let aiState = 'idle'; // 'idle', 'thinking', 'speaking'
     let canvasWidth = 300, canvasHeight = 260;
