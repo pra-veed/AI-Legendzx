@@ -1,4 +1,14 @@
-/* ==========================================================================
+.auth-controls { position: relative; display: flex; align-items: center; gap: 10px; }
+.google-sign-in, .sign-out-btn { border: 1px solid rgba(255,255,255,.2); color: inherit; background: rgba(255,255,255,.08); border-radius: 999px; padding: 10px 14px; cursor: pointer; font: inherit; transition: .25s ease; }
+.google-sign-in { display: inline-flex; align-items: center; gap: 8px; }
+.google-sign-in:hover, .sign-out-btn:hover { border-color: #22d3ee; background: rgba(34,211,238,.14); transform: translateY(-1px); }
+.signed-in-state { display: inline-flex; align-items: center; gap: 8px; }
+.signed-in-label { max-width: 130px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: .8rem; color: rgba(255,255,255,.72); }
+.auth-message { position: absolute; top: calc(100% + 8px); right: 0; width: 260px; margin: 0; color: #fda4af; font-size: .75rem; text-align: right; }
+.auth-message:empty { display: none; }
+@media (max-width: 900px) { .auth-controls { margin-left: auto; margin-right: 12px; } .google-sign-in span { display: none; } .google-sign-in { padding: 10px 12px; } }
+
+/* ========================================================================== 
    Legendzx AI Portfolio — Ultra-Premium Modern Design System
    ========================================================================== */
 

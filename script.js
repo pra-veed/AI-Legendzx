@@ -4,6 +4,55 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+    // ═══════════════ SUPABASE GOOGLE AUTH ═══════════════
+    const googleButton = document.getElementById('google-sign-in');
+    const signedInState = document.getElementById('signed-in-state');
+    const signedInLabel = document.getElementById('signed-in-label');
+    const signOutButton = document.getElementById('sign-out-btn');
+    const authMessage = document.getElementById('auth-message');
+    let supabaseClient = null;
+
+    function setAuthMessage(message) {
+        if (authMessage) authMessage.textContent = message || '';
+    }
+
+    async function setupAuth() {
+        if (!window.supabase?.createClient) return;
+        try {
+            const configResponse = await fetch('/config');
+            const config = await configResponse.json();
+            if (!config.url || !config.key) return;
+            supabaseClient = window.supabase.createClient(config.url, config.key);
+            const { data: { session } } = await supabaseClient.auth.getSession();
+            updateAuthUI(session);
+            supabaseClient.auth.onAuthStateChange((_event, nextSession) => updateAuthUI(nextSession));
+            const params = new URLSearchParams(window.location.search);
+            if (params.get('error')) setAuthMessage('Google sign-in could not be completed. Please try again.');
+        } catch (_error) { setAuthMessage('Sign-in is temporarily unavailable.'); }
+    }
+
+    function updateAuthUI(session) {
+        const user = session?.user;
+        if (googleButton) googleButton.hidden = Boolean(user);
+        if (signedInState) signedInState.hidden = !user;
+        if (signedInLabel && user) signedInLabel.textContent = user.user_metadata?.full_name || user.email || 'Signed in';
+    }
+
+    googleButton?.addEventListener('click', async () => {
+        if (!supabaseClient) { setAuthMessage('Sign-in is not configured yet.'); return; }
+        googleButton.disabled = true;
+        setAuthMessage('Connecting to Google…');
+        const redirectTo = config?.redirectUrl || window.location.origin + '/auth/callback';
+        const { error } = await supabaseClient.auth.signInWithOAuth({ provider: 'google', options: { redirectTo } });
+        if (error) { googleButton.disabled = false; setAuthMessage('Google sign-in could not be started.'); }
+    });
+
+    signOutButton?.addEventListener('click', async () => {
+        if (supabaseClient) await supabaseClient.auth.signOut();
+        setAuthMessage('');
+    });
+    setupAuth();
+
     // ═══════════════ PRELOADER ═══════════════
     const preloader = document.getElementById('preloader');
     function hidePreloader() {

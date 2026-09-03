@@ -50,6 +50,16 @@
                 <a href="#blog" class="nav-link" data-text="Blog">Blog</a>
                 <a href="#contact" class="nav-link" data-text="Contact">Contact</a>
             </div>
+            <div class="auth-controls" id="auth-controls">
+                <button class="google-sign-in" id="google-sign-in" type="button">
+                    <i class="fab fa-google"></i><span>Continue with Google</span>
+                </button>
+                <div class="signed-in-state" id="signed-in-state" hidden>
+                    <span class="signed-in-label" id="signed-in-label"></span>
+                    <button class="sign-out-btn" id="sign-out-btn" type="button">Sign out</button>
+                </div>
+                <p class="auth-message" id="auth-message" role="status" aria-live="polite"></p>
+            </div>
             <button class="nav-cta" id="open-ai-studio-btn">
                 <i class="fas fa-sparkles"></i> 3D AI Assistant
             </button>
@@ -1013,6 +1023,7 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.57.4/dist/umd/supabase.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
