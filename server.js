@@ -99,6 +99,11 @@ http.createServer((request, response) => {
     response.end(JSON.stringify({ url: process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL || '', key: process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY || '', redirectUrl: process.env.NEXT_PUBLIC_DEV_SUPABASE_REDIRECT_URL || '' }))
     return
   }
+  if (requestUrl.pathname === '/auth/callback') {
+    response.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store' })
+    response.end(`<!doctype html><html><head><title>Completing Google sign-in…</title></head><body><p>Completing Google sign-in…</p><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script>(async()=>{try{const config=await fetch('/config').then(r=>r.json());const supabase=window.supabase.createClient(config.url,config.key);const params=new URLSearchParams(location.search);if(params.has('code')){const {error}=await supabase.auth.exchangeCodeForSession(params.get('code'));if(error)throw error}if(location.hash)await supabase.auth.getSession();location.replace('/')}catch(error){document.body.innerHTML='<p>Google sign-in could not be completed. Please return and try again.</p>'}})()</script></body></html>`)
+    return
+  }
   const requested = decodeURIComponent(requestUrl.pathname)
   const relative = requested === '/' ? 'index.html' : requested.replace(/^\/+/, '')
   const filePath = path.resolve(root, relative)
