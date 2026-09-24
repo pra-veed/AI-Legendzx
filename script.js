@@ -691,7 +691,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ═══════════════════════════════════════════════════
     // 🧠 3D HOLOGRAPHIC AI STUDIO CHATBOT ENGINE
-    // ═══════════════════════════════════════════════════
+    // ═════════════════════��═════════════════════════════
     const studioModal = document.getElementById('ai-studio-modal');
     const studioOpenNavBtn = document.getElementById('open-ai-studio-btn');
     const studioOpenHeroBtn = document.getElementById('hero-open-ai-btn');
@@ -878,21 +878,36 @@ Feel free to ask me to **write code**, **estimate a project budget**, or **expla
         }
     }
 
-    function handleStudioSend() {
+    const agentHistory = [];
+
+    async function handleStudioSend() {
         const text = studioInput.value.trim();
         if (!text) return;
 
         addStudioMessage(text, true);
+        agentHistory.push({ role: 'user', content: text });
         studioInput.value = '';
-
         set3DAIState('thinking');
+        if (studioSendBtn) studioSendBtn.disabled = true;
 
-        setTimeout(() => {
-            const selectedModel = modelSelect ? modelSelect.value : 'neural';
-            const botReply = generateSmartAIResponse(text, selectedModel);
-            addStudioMessage(botReply, false);
-            if (!voiceOutputEnabled) set3DAIState('idle');
-        }, 900);
+        try {
+            const selectedModel = modelSelect ? modelSelect.value : 'auto';
+            const response = await fetch('/api/agent', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ model: selectedModel, messages: agentHistory })
+            });
+            const result = await response.json();
+            if (!response.ok) throw new Error(result.error || 'Live agent unavailable');
+            agentHistory.push({ role: 'assistant', content: result.message });
+            addStudioMessage(`**${result.model}**\n\n${result.message}`, false);
+        } catch (error) {
+            const fallback = generateSmartAIResponse(text, modelSelect ? modelSelect.value : 'legendzx');
+            addStudioMessage(`${fallback}\n\n_Live agent unavailable: ${error.message}_`, false);
+        } finally {
+            set3DAIState('idle');
+            if (studioSendBtn) studioSendBtn.disabled = false;
+        }
     }
 
     if (studioSendBtn && studioInput) {
